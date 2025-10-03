@@ -1,0 +1,36 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias pacman='pacman --color=auto'
+alias diff='diff --color=auto'
+alias e='emacs -nw'
+alias p='python'
+
+# sourcing git-completion.bash
+if [ -f /usr/share/git/completion/git-completion.bash ]; then
+    source /usr/share/git/completion/git-completion.bash
+fi
+
+if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+    source /usr/share/git/completion/git-prompt.sh
+    GIT_PS1_SHOWSTASHSTATE=true
+    GIT_PS1_SHOWDIRTYSTATE=true
+    GIT_PS1_SHOWUNTRACKEDFILES=true
+
+    PS1='\[\e[;36m\]┌──(\[\e[1;34m\]\u@\h\[\e[;36m\])-[\[\e[;35m\]\w\[\e[;36m\]]\[\e[;36m\]$(__git_ps1 "─[\[\e[1;34m\]%s\[\e[;36m\]]")\n\[\e[;36m\]└─\[\e[1;37m\]>\[\e[0m\] '
+
+else
+
+    PS1='\[\e[;36m\]┌──(\[\e[1;34m\]\u@\h\[\e[;36m\])-[\[\e[;35m\]\w\[\e[;36m\]]\n\[\e[;36m\]└─\[\e[1;37m\]>\[\e[0m\] '
+
+fi
+
+# setxkbmap -option compose:rwin
+
+archey

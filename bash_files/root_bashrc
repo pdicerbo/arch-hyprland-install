@@ -1,0 +1,34 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias pacman='pacman --color=auto'
+alias diff='diff --color=auto'
+alias ncdu='ncdu --color dark'
+alias p='python'
+
+# sourcing git-completion.bash
+if [ -f /usr/share/git/completion/git-completion.bash ]; then
+    source /usr/share/git/completion/git-completion.bash
+fi
+
+if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+    source /usr/share/git/completion/git-prompt.sh
+    GIT_PS1_SHOWSTASHSTATE=true
+    GIT_PS1_SHOWDIRTYSTATE=true
+    GIT_PS1_SHOWUNTRACKEDFILES=true
+
+    PS1='\[\e[1;95m\]┌─\[\e[1;30m\][\[\e[1;91m\]\u@\h\[\e[1;30m\]]\[\e[1;95m\]──\[\e[1;30m\][\[\e[1;91m\]\w\[\e[1;30m\]]\[\e[1;95m\]$(__git_ps1 "─[\[\e[1;92m\]%s\[\e[1;95m\]]")\n└─\[\e[1;30m\][\[\e[1;91m\]\A\[$(tput sgr0)\]\[\e[1;30m\]] \[\e[1;95m\]> \[\e[m\]'
+
+else
+
+    PS1='\[\e[1;95m\]┌─\[\e[1;30m\][\[\e[1;91m\]\u@\h\[\e[1;30m\]]\[\e[1;95m\]──\[\e[1;30m\][\[\e[1;91m\]\w\[\e[1;30m\]]\[\e[1;95m\]\n└─\[\e[1;30m\][\[\e[1;91m\]\A\[$(tput sgr0)\]\[\e[1;30m\]] \[\e[1;95m\]> \[\e[m\]'
+
+fi
+
+fastfetch
