@@ -66,8 +66,8 @@ pacman -S --noconfirm ctop dive bat btop atop iftop procs glances fastfetch
 # neovim utils
 pacman -S --noconfirm ripgrep fd luarocks nodejs npm lazygit lynx
 
-# pdf utils
-pacman -S --noconfirm poppler
+# other utils
+pacman -S --noconfirm poppler ristretto
 
 echo -e "\n\tinstall some fonts\n"
 pacman -S --noconfirm ttf-dejavu ttf-dejavu-nerd ttf-nerd-fonts-symbols noto-fonts gnu-free-fonts ttf-anonymous-pro ttf-jetbrains-mono-nerd ttf-font-awesome
