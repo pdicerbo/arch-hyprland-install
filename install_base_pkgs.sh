@@ -49,11 +49,11 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 echo -e "\n\tinstall hyprland-related packages\n"
 # install hyprland stuff
-pacman -S --noconfirm hyprland waybar pipewire wireplumber foot foot-terminfo swaync xdg-desktop-portal-hyprland hyprpolkitagent qt5-wayland qt6-wayland hyprpaper wofi hyprpicker cliphist dolphin hypridle hyprlock hyprshot
+pacman -S --noconfirm hyprland waybar pipewire wireplumber foot foot-terminfo swaync xdg-desktop-portal-hyprland hyprpolkitagent qt5-wayland qt6-wayland hyprpaper wofi rofi hyprpicker cliphist dolphin hypridle hyprlock hyprshot
 
 echo -e "\n\tinstall base user utilities\n"
 # user utils
-pacman -S --noconfirm git sudo wget inetutils bind alacritty
+pacman -S --noconfirm git git-delta sudo wget inetutils bind alacritty
 
 echo -e "\n\tinstall base development utils\n"
 # development utils
@@ -67,7 +67,7 @@ pacman -S --noconfirm ctop dive bat btop atop iftop procs glances fastfetch
 pacman -S --noconfirm ripgrep fd luarocks nodejs npm lazygit lynx
 
 # other utils
-pacman -S --noconfirm poppler ristretto
+pacman -S --noconfirm poppler ristretto cmatrix imagemagick
 
 echo -e "\n\tinstall some fonts\n"
 pacman -S --noconfirm ttf-dejavu ttf-dejavu-nerd ttf-nerd-fonts-symbols noto-fonts gnu-free-fonts ttf-anonymous-pro ttf-jetbrains-mono-nerd ttf-font-awesome
