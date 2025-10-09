@@ -5,7 +5,7 @@ echo -e "\n\tfinalizing new user environment\n"
 set -ex
 
 cd $HOME
-git clone --branch topic/hyprland --bare https://github.com/pdicerbo/dotfiles.git $HOME/.dotfiles-bare-repo
+git clone --bare https://github.com/pdicerbo/dotfiles-hyprland.git $HOME/.dotfiles-bare-repo
 git --git-dir=$HOME/.dotfiles-bare-repo --work-tree=$HOME checkout -f
 
 export PATH=$PATH:$HOME/.scripts
