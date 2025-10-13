@@ -38,7 +38,16 @@ echo -e "\n\tbase system upgrade\n"
 pacman -Suy --noconfirm
 
 echo -e "\n\tinstall network utilities\n"
-pacman -S --noconfirm iw wpa_supplicant dialog dhcpcd netctl openssh
+pacman -S --noconfirm iw openssh
+if [[ $2 == "vbox" ]] ; then
+    pacman -S --noconfirm wpa_supplicant dialog dhcpcd netctl
+else
+    pacman -S --noconfirm iwd
+    mkdir /etc/iwd
+    echo -e "[General]\nEnableNetworkConfiguration=true\n" > /etc/iwd/main.conf
+    echo -e "[Network]\nNameResolvingService=systemd\n" >> /etc/iwd/main.conf
+    systemctl enable iwd.service
+fi
 
 # install grub
 echo -e "\n\tinstall GRUB bootloader\n"
@@ -80,7 +89,7 @@ echo -e "\n\tenabling/starting docker service\n"
 systemctl enable docker.service
 systemctl start  docker.service
 
-if [[ $2 -eq "vbox" ]] ; then
+if [[ $2 == "vbox" ]] ; then
     echo -e "\n\tinstall virtualbox utils\n"
     pacman -S --noconfirm virtualbox-guest-utils
 
@@ -110,7 +119,7 @@ echo -e "\n\tadd basic user utilities to root user\n"
 
 cp bash_files/root_bashrc $HOME/.bashrc
 
-if [[ $2 -eq "vbox" ]] ; then
+if [[ $2 == "vbox" ]] ; then
     echo -e "\n\tadopting the default netctl profile for wired connection..\n"
     cd /etc/netctl/
     cp examples/ethernet-dhcp .
