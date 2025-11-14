@@ -51,8 +51,8 @@ fi
 
 # install grub
 echo -e "\n\tinstall GRUB bootloader\n"
-pacman -S --noconfirm grub dosfstools os-prober fuse2
-grub-install --target=i386-pc /dev/sda
+pacman -S --noconfirm grub efibootmgr dosfstools os-prober fuse2
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux-Hyprland
 sed -i 's/ quiet//' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -66,7 +66,7 @@ pacman -S --noconfirm pipewire wireplumber pipewire-pulse pamixer cava
 
 echo -e "\n\tinstall base user utilities\n"
 # user utils
-pacman -S --noconfirm git git-delta sudo wget inetutils bind alacritty
+pacman -S --noconfirm git git-delta sudo wget inetutils bind alacritty kitty
 
 echo -e "\n\tinstall base development utils\n"
 # development utils
@@ -74,13 +74,13 @@ pacman -S --noconfirm gcc clang make cmake linux-headers perl python3 python-pip
 
 echo -e "\n\tinstall some other utilities\n"
 # monitor utils
-pacman -S --noconfirm ctop dive bat btop atop iftop procs glances fastfetch
+pacman -S --noconfirm ctop dive bat btop atop htop iftop procs glances fastfetch
 
 # neovim utils
 pacman -S --noconfirm ripgrep fd luarocks nodejs npm lazygit lynx
 
 # other utils
-pacman -S --noconfirm poppler ristretto cmatrix imagemagick
+pacman -S --noconfirm poppler ristretto imagemagick
 
 echo -e "\n\tinstall some fonts\n"
 pacman -S --noconfirm ttf-dejavu ttf-dejavu-nerd ttf-nerd-fonts-symbols noto-fonts gnu-free-fonts ttf-anonymous-pro ttf-jetbrains-mono-nerd ttf-font-awesome

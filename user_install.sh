@@ -19,9 +19,4 @@ fi
 echo -e "\n\tinstalling Google Chrome...\n"
 gchrome_upgrade
 
-LINK_FOLDER_ROOT=$HOME
-echo -e "\n\tcreating link to shared folder into $LINK_FOLDER_ROOT\n"
-mkdir -p $LINK_FOLDER_ROOT
-ln -s /media/sf_shared $LINK_FOLDER_ROOT/shared
-
 echo -e "\n\tremember to remove the original repo folder!\n"
