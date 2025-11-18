@@ -1,12 +1,20 @@
 #!/bin/bash
 
-if [[ $# -ne 2 ]]; then
-    echo -e "\n\tUsage\n\t  $0 [username] [vbox|...]\n\n\tif vbox is passed, some other steps will be performed"
-    exit 2
+input_user="pierluigi"
+vbox="default"
+
+# Override defaults if arguments are provided
+if [[ $# -ge 1 ]]; then
+    input_user="$1"
+fi
+if [[ $# -ge 2 ]]; then
+    vbox="$2"
 fi
 
 echo -e "\n\tinit operations\n"
-
+echo -e "\n\t  input user: $input_user"
+echo -e "\n\t  mode: $vbox"
+sleep 3 # give user time to read input info
 set -ex
 
 # set localtime
@@ -39,7 +47,7 @@ pacman -Suy --noconfirm
 
 echo -e "\n\tinstall network utilities\n"
 pacman -S --noconfirm iw openssh
-if [[ $2 == "vbox" ]] ; then
+if [[ $vbox == "vbox" ]] ; then
     pacman -S --noconfirm wpa_supplicant dialog dhcpcd netctl
 else
     pacman -S --noconfirm iwd
@@ -66,7 +74,7 @@ pacman -S --noconfirm pipewire wireplumber pipewire-pulse pamixer cava
 
 echo -e "\n\tinstall base user utilities\n"
 # user utils
-pacman -S --noconfirm git git-delta sudo wget inetutils bind alacritty kitty
+pacman -S --noconfirm git git-delta sudo wget inetutils less bind alacritty kitty
 
 echo -e "\n\tinstall base development utils\n"
 # development utils
@@ -74,7 +82,7 @@ pacman -S --noconfirm gcc clang make cmake linux-headers perl python3 python-pip
 
 echo -e "\n\tinstall some other utilities\n"
 # monitor utils
-pacman -S --noconfirm ctop dive bat btop atop htop iftop procs glances fastfetch
+pacman -S --noconfirm ctop dive bat btop atop htop iftop iotop procs glances fastfetch
 
 # neovim utils
 pacman -S --noconfirm ripgrep fd luarocks nodejs npm lazygit lynx
@@ -89,7 +97,7 @@ echo -e "\n\tenabling/starting docker service\n"
 systemctl enable docker.service
 systemctl start  docker.service
 
-if [[ $2 == "vbox" ]] ; then
+if [[ $vbox == "vbox" ]] ; then
     echo -e "\n\tinstall virtualbox utils\n"
     pacman -S --noconfirm virtualbox-guest-utils
 
@@ -107,8 +115,6 @@ echo -e "\n\tenabling systemd-resolved.service at startup\n"
 systemctl enable systemd-resolved.service
 systemctl start  systemd-resolved.service
 
-input_user=$1
-
 echo -e "\n\tadd new user $input_user\n"
 useradd -m --groups root,wheel,docker $input_user
 
@@ -118,6 +124,7 @@ echo -e "\n\tadd basic user utilities to root user\n"
 ./user_install.sh "ROOT"
 
 cp bash_files/root_bashrc $HOME/.bashrc
+cp bash_files/root_bash_profile $HOME/.bash_profile
 
 if [[ $2 == "vbox" ]] ; then
     echo -e "\n\tadopting the default netctl profile for wired connection..\n"
