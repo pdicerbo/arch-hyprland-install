@@ -70,7 +70,7 @@ pacman -S --noconfirm hyprland waybar foot foot-terminfo swaync xdg-desktop-port
 
 echo -e "\n\tinstall audio utils\n"
 # audio utils
-pacman -S --noconfirm pipewire wireplumber pipewire-pulse pamixer cava
+pacman -S --noconfirm pipewire wireplumber pipewire-pulse pamixer cava pavucontrol
 
 echo -e "\n\tinstall base user utilities\n"
 # user utils
@@ -88,10 +88,10 @@ pacman -S --noconfirm ctop dive bat btop atop htop iftop iotop procs glances fas
 pacman -S --noconfirm ripgrep fd luarocks nodejs npm lazygit lynx
 
 # other utils
-pacman -S --noconfirm poppler ristretto imagemagick
+pacman -S --noconfirm poppler ristretto imagemagick xpdf
 
 echo -e "\n\tinstall some fonts\n"
-pacman -S --noconfirm ttf-dejavu ttf-dejavu-nerd ttf-nerd-fonts-symbols noto-fonts gnu-free-fonts ttf-anonymous-pro ttf-jetbrains-mono-nerd ttf-font-awesome
+pacman -S --noconfirm ttf-dejavu ttf-dejavu-nerd ttf-nerd-fonts-symbols noto-fonts noto-fonts-emoji gnu-free-fonts ttf-anonymous-pro ttf-jetbrains-mono-nerd ttf-font-awesome
 
 echo -e "\n\tenabling/starting docker service\n"
 systemctl enable docker.service
@@ -136,4 +136,8 @@ if [[ $2 == "vbox" ]] ; then
 else
     echo -e "\n\tremember to copy a valid netctl profile for wireless connection and enable it.."
 fi
+
+echo -e "\tinstallating tree-sitter CLI for neovim\n"
+npm install -g tree-sitter-cli
+
 echo -e "\n\tremember to set the new user [$input_user] and root password!\n\tjust exec the following command:\n\tpasswd [username]\n\n\tthen continue with:\n\tsu $input_user\n\t./user_install.sh\n"

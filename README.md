@@ -72,4 +72,5 @@ AUR packages to be installed after a fresh installation
 - [cppman](https://aur.archlinux.org/packages/cppman)
 - [luajit](https://aur.archlinux.org/packages/luajit-tiktoken-bin)
 - [devpod-bin](https://aur.archlinux.org/packages/devpod-bin)
+    - once installed, execute `devpod-bin provider add docker`
 - [unimatrix](https://aur.archlinux.org/packages/unimatrix-git)
