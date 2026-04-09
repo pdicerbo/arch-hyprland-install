@@ -67,7 +67,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 echo -e "\n\tinstall hyprland-related packages\n"
 # install hyprland stuff
-pacman -S --noconfirm hyprland waybar foot foot-terminfo swaync xdg-desktop-portal-hyprland hyprpolkitagent qt5-wayland qt6-wayland hyprpaper wofi rofi hyprpicker cliphist dolphin hypridle hyprlock hyprshot
+pacman -S --noconfirm hyprland waybar foot foot-terminfo swaync xdg-desktop-portal-hyprland hyprpolkitagent qt5-wayland qt6-wayland hyprpaper wofi rofi hyprpicker cliphist dolphin hypridle hyprlock hyprshot man-db
 
 echo -e "\n\tinstall audio utils\n"
 # audio utils
