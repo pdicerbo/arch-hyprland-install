@@ -50,11 +50,12 @@ pacman -S --noconfirm iw openssh
 if [[ $vbox == "vbox" ]] ; then
     pacman -S --noconfirm wpa_supplicant dialog dhcpcd netctl
 else
-    pacman -S --noconfirm iwd
+    pacman -S --noconfirm networkmanager iwd
     mkdir /etc/iwd
     echo -e "[General]\nEnableNetworkConfiguration=true\n" > /etc/iwd/main.conf
     echo -e "[Network]\nNameResolvingService=systemd\n" >> /etc/iwd/main.conf
     systemctl enable iwd.service
+    systemctl enable NetworkManager
 fi
 
 # install grub
@@ -78,7 +79,7 @@ pacman -S --noconfirm git git-delta sudo wget inetutils less bind alacritty kitt
 
 echo -e "\n\tinstall base development utils\n"
 # development utils
-pacman -S --noconfirm gcc clang make cmake linux-headers perl python3 python-pip docker docker-compose awk vim tmux tldr fzf ncdu neovim go
+pacman -S --noconfirm gcc clang make cmake linux-headers perl python3 python-pip docker docker-compose awk vim tmux tldr fzf ncdu neovim go eza
 
 echo -e "\n\tinstall some other utilities\n"
 # monitor utils
@@ -96,6 +97,11 @@ pacman -S --noconfirm ttf-dejavu ttf-dejavu-nerd ttf-nerd-fonts-symbols noto-fon
 echo -e "\n\tenabling/starting docker service\n"
 systemctl enable docker.service
 systemctl start  docker.service
+
+echo -e "\n\tadding bluetooth utils\n"
+pacman -S --noconfirm bluez bluez-utils
+systemctl enable bluetooth.service
+pacman -S --noconfirm blueman
 
 if [[ $vbox == "vbox" ]] ; then
     echo -e "\n\tinstall virtualbox utils\n"
