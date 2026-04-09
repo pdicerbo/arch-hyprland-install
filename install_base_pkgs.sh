@@ -78,7 +78,7 @@ pacman -S --noconfirm git git-delta sudo wget inetutils less bind alacritty kitt
 
 echo -e "\n\tinstall base development utils\n"
 # development utils
-pacman -S --noconfirm gcc clang make cmake linux-headers perl python3 python-pip docker awk vim tmux tldr fzf ncdu neovim go
+pacman -S --noconfirm gcc clang make cmake linux-headers perl python3 python-pip docker docker-compose awk vim tmux tldr fzf ncdu neovim go
 
 echo -e "\n\tinstall some other utilities\n"
 # monitor utils
